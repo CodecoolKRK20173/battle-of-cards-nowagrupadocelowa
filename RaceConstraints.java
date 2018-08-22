@@ -24,10 +24,6 @@ public class RaceConstraints{
         generator = new Random();
     }
 
-    public String getTest(){
-        return minHealth + " " + maxHealth;
-    }
-
     public int getRandomHealth(){
         return getRandomNumber(minHealth, maxHealth);
     }
