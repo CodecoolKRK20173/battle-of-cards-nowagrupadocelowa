@@ -1,7 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class Card{
     private Map<Attribute, Integer> attributes;
     private Races race;

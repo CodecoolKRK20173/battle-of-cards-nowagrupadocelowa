@@ -19,6 +19,4 @@ public class CardComparator {
 
         return winners;
     }
-
-    
 }

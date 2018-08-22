@@ -1,13 +1,11 @@
 import java.util.Scanner;
 
 class HumanPlayer extends Player{
-
     
     public HumanPlayer(String name, LinkedList<Card> hand){
         setName(name);
         setHand(hand);
     }
-
 
     protected Attributes selectCardAttribute(){
         Scanner reader = new Scanner(System.in);
@@ -30,6 +28,5 @@ class HumanPlayer extends Player{
                 System.out.println("You selected dexterity");
                 return Attributes.DEXTERITY;
         }
-
     }
 }

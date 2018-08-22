@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+
 class CardBuilder{
     private HashMap<Races, RaceConstraints> constraintsMap;
 
     CardBuilder(){
         constraintsMap = new HashMap<Races, RaceConstraints>();
-
     }
-
         
     private void makeConstraintsMap(){
         constraintsMap.put(Races.HUMAN, new RaceConstraints()); //dopisac statystyki
@@ -17,13 +16,11 @@ class CardBuilder{
         constraintsMap.put(Races.ORC, new RaceConstraints());
     }
 
-
     public Races randomRace(){
         Random generator = new Random();
         ArrayList<Races> keys = new ArrayList<Races>(constraintsMap.keySet().toArray());
         return keys.get(generator.nextInt(3));
     }
-
 
     public Card makeCard(){
         Races race = randomRace();
