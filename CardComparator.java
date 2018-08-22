@@ -1,17 +1,18 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class CardComparator {
 
-    public ArrayList<Player> compareCards(Player[] thisTurnPlayers, Enum attribute){
+    public ArrayList<Player> compareCards(ArrayList<Player> thisTurnPlayers, Enum attribute){
         int highestAttribute = 0;
-        Player[] winners = new ArrayList<Player>();
+        ArrayList<Player> winners = new ArrayList<Player>();
         for (Player player : thisTurnPlayers){
-            if (player.hand.getFirst().get(attribute) > highestAttribute) {
-                highestAttribute = player.hand.getFirst().get(attribute);
+            if (player.getAttributeValue(attribute) > highestAttribute) {
+                highestAttribute = player.getAttributeValue(attribute);
                 winners.clear();
                 winners.add(player);
             }
-            else if (player.hand.getFirst().get(attribute) == highestAttribute) {
+            else if (player.getAttributeValue(attribute) == highestAttribute) {
                 winners.add(player);
             }
         }
