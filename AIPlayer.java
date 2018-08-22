@@ -5,11 +5,14 @@ class AIPlayer extends Player{
         int highestValue = 0;
         Attributes highestAttribute = null;
 
-        for(int i = 0; i < 4; i++){
-            
+        for(Attributes attribute: Attributes.values()){
+            int tempAttributeValue = getHand().getFirst().getAttributeValue(attribute);
+
+            if(highestValue < tempAttributeValue){
+                highestValue = tempAttributeValue;
+                highestAttribute = attribute;
+            }
         }
-
-
-
+        return highestAttribute;
     }
 }
