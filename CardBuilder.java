@@ -9,7 +9,7 @@ class CardBuilder{
 
     }
 
-    
+        
     private void makeConstraintsMap(){
         constraintsMap.put(Races.HUMAN, new RaceConstraints()); //dopisac statystyki
         constraintsMap.put(Races.ELF, new RaceConstraints());
