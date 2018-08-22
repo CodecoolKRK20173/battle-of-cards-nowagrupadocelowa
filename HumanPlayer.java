@@ -1,12 +1,19 @@
 import java.util.Scanner;
+
 class HumanPlayer extends Player{
+
+    
+    public HumanPlayer(String name, LinkedList<Card> hand){
+        setName(name);
+        setHand(hand);
+    }
 
 
     protected Attributes selectCardAttribute(){
         Scanner reader = new Scanner(System.in);
         int answer = null;
 
-        System.out.println(name + " select attribute to fight with\n" + "(1) Health\n" + "(2) Intelligence\n" + "(3) Strength\n" + "(4) Dexterity");
+        System.out.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Intelligence\n" + "(3) Strength\n" + "(4) Dexterity");
         answer = reader.nextInt();
 
         switch(answer){

@@ -5,7 +5,7 @@ abstract class Player{
 
 
     public void setName(String name){
-        this.name = name
+        this.name = name;
     }
 
     
@@ -19,8 +19,8 @@ abstract class Player{
     }
 
 
-    public setHand(LinkedList<Card> cards){
-        hand = cards;
+    public setHand(LinkedList<Card> hand){
+        this.hand = hand;
     }
 
 
@@ -29,7 +29,5 @@ abstract class Player{
     }
 
 
-    abstract protected Attributes selectCardAttribute(){
-
-    }
+    abstract protected Attributes selectCardAttribute();
 }
