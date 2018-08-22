@@ -1,12 +1,7 @@
-public class PreparePlayers{
- 
-    String name;
-    LinkedList<Card> cards;
+import java.util.LinkedList;
+import java.util.List;
 
-    public Player(String name, ArrayList cards){
-        this.name = name;
-        this.cards = cards;
-    }
+public class PreparePlayers{
 
     public ArrayList createPlayers(){
         
@@ -16,7 +11,7 @@ public class PreparePlayers{
         int numOfAI = Integer.parseInt(numOfAIInput); 
         // int allPlayers = numOfHumans + numOfAI;
 
-        ArrayList<MyObject> listOfPlayers = new ArrayList<MyObject>();
+        ArrayList<Player> listOfPlayers = new ArrayList<Player>();
 
         for (int i=0; i<numOfHumans; i++){
                 String name = input("What's your nickname?");

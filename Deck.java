@@ -1,6 +1,6 @@
 public class Deck{
-    private LinkedList<Card> name = new LinkedList<Card>();
-    private int cards_per_player;
+    private LinkedList<Card> cardsList = new LinkedList<Card>();
+    private final int CARDS_PER_PLAYER;
     private int number_of_players;
     
     // public void deck(int players){
@@ -12,15 +12,13 @@ public class Deck{
     // }
     
     public LinkedList<Card> dealCardsForPlayers(){
-        cards_per_players = 10;
-        for(int i=0; i<number_of_players; i++){
+        CARDS_PER_PLAYER = 10;
             
-            LinkedList<Card> name = new LinkedList<Card>();
-            for(int j=0; j<cards_per_player; j++){
-                name.add(getCard());
-            }
-
-            return name; 
+        LinkedList<Card> cardsList = new LinkedList<Card>();
+        for(int j=0; j < CARDS_PER_PLAYER; j++){
+            cardsList.add(getCard());
         }
+
+        return cardsList; 
     }
 }

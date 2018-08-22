@@ -9,37 +9,40 @@ public class Game {
 
     private ArrayList<PLayer> players;
     private Player activePlayer;
-    private ArrayList<Players> thisTurnPlayers;
+    private ArrayList<Players> currentTurnPlayers;
     private ArrayList<Card> gamePile;
 
     public Game(){
-        this.players = createPlayers();
-        this.thisTurnPLayers = new ArrayList<PLayer>();
-        thisTurnPlayers.addAll(players);
+        CardBuilder cardBuilder = new CardBuilder();
+        this.players = cardBuilder.createPlayers();
+        this.currentTurnPlayers = new ArrayList<PLayer>();
+        currentTurnPlayers.addAll(players);
         this.activePlayer = this.players[0];
         this.gamePile = new ArrayList<Card>();
     }
 
-    private void playTurn(ArrayList<Player> thisTurnPlayers, Player activePlayer) {
+    private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) {
 
         ArrayList<Player> turnWinners = new ArrayList<Player>();
-        Enum attribute = activePlayer.selectCardAttribute();
-        turnWinners = cardComparator.compareCards(thisTurnPlayers, attribute);
+
+
+        Attributes attribute = activePlayer.selectCardAttribute();
+        turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
         // draw
         if (turnWinners.length() > 1) {
             cardsToPile(turnWinners);
             playTurn(turnWinners, activePlayer);
         // 1 player winner
         } else {
-            cardsToPile(thisTurnPlayers);
+            cardsToPile(currentTurnPlayers);
             giveAwardedCards(turnWinners.get(0));
             activePlayer = turnWinners.get(0);
         }
     }
 
-    private void cardsToPile(ArrayList<Player> thisTurnPlayers) {
-        for(int i = 0; i < thisTurnPlayers.length(); i++) {
-            gamePile.add(thisTurnPlayers.get(i).getHand().pollFirst());
+    private void cardsToPile(ArrayList<Player> currentTurnPlayers) {
+        for(int i = 0; i < currentTurnPlayers.length(); i++) {
+            gamePile.add(currentTurnPlayers.get(i).getHand().pollFirst());
         }
     }
 
@@ -56,11 +59,11 @@ public class Game {
         boolean noWinner = true;
 
         while(!noWinner) {
-            if(thisTurnPlayers.length() < players.length()) {
-                thisTurnPlayers.clear();
-                thisTurnPlayers.addAll(players);
+            if(currentTurnPlayers.length() < players.length()) {
+                currentTurnPlayers.clear();
+                currentTurnPlayers.addAll(players);
             }
-            playTurn(thisTurnPlayers, activePlayer);
+            playTurn(currentTurnPlayers, activePlayer);
         }
     }
 

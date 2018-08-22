@@ -3,7 +3,7 @@ import java.util.List;
 
 public class CardComparator {
 
-    public ArrayList<Player> compareCards(ArrayList<Player> thisTurnPlayers, Enum attribute){
+    public ArrayList<Player> compareCards(ArrayList<Player> thisTurnPlayers, Attributes attribute){
         int highestAttribute = 0;
         ArrayList<Player> winners = new ArrayList<Player>();
         for (Player player : thisTurnPlayers){
