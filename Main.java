@@ -1,6 +1,5 @@
 public class Main {
     Game game = new Game();
-    PreparePlayers preparePlayer = new PreparePlayers();
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -8,7 +7,9 @@ public class Main {
     }
 
     public void startGame(){
-        PreparePlayers.preparePlayer();
-        game.playGame();
+        boolean end_of_game = false;
+        while(end_of_game != true){
+            game.playGame();
+        }
     }
 }
