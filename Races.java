@@ -1,4 +1,4 @@
-public enum Race{
+public enum Races{
     HUMAN, ELF, DWARF, ORC;
 
     @Override
