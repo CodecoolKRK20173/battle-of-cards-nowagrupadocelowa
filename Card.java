@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class Card{
     private Map<Attributes, Integer> attributes;
@@ -10,6 +9,7 @@ public class Card{
                                          "Tricky", "Mythical", "Charming", "Sadistic", "Epic", "Dark",
                                          "Wild", "Vivid", "Primal", "Female", "Master"};
     private final int CARD_WIDTH = 30;
+    private Utils utils;
 
     public Card(int health, int strenght, int intelligence, int dexterity, Races race){
         attributes = new HashMap<Attributes, Integer>();
@@ -19,6 +19,7 @@ public class Card{
         attributes.put(Attributes.DEXTERITY, dexterity);
 
         this.race = race;
+        utils = new Utils();
         name = GenerateName();
     }
 
@@ -44,8 +45,7 @@ public class Card{
     }
 
     private String getRrandomAdjective(){
-        Random generator = new Random();
-        return randomAdjectives[generator.nextInt(randomAdjectives.length)];
+        return randomAdjectives[utils.getRandomNumber(0, randomAdjectives.length-1)];
     }
 
     private Attributes getStrongestAttribute(){
@@ -64,39 +64,19 @@ public class Card{
         return biggestAttribute;
     }
 
-    private String center(String string, int width){
-        int padSize = width - string.length();
-        int padStart = string.length() + (padSize / 2);
-
-        string = String.format("%" + padStart + "s", string);
-        string = String.format("%-" + width + "s", string);
-
-        return string;
-    }
-
-    private String generateLine(String fill, int width){
-        StringBuilder lineBuilder = new StringBuilder();
-
-        for (int i=0; i<width; i++){
-            lineBuilder.append(fill);
-        }
-
-        return lineBuilder.toString();
-    }
-
     @Override
     public String toString() {
         StringBuilder cardStringBuilder = new StringBuilder();
 
-        cardStringBuilder.append(" " + generateLine("_", CARD_WIDTH-2) + " \n");
-        cardStringBuilder.append("/" + generateLine(" ", CARD_WIDTH-2) + "\\\n");
-        cardStringBuilder.append("|" + center(name, CARD_WIDTH-2) + "|\n");
-        cardStringBuilder.append("|" + center(" ", CARD_WIDTH-2) + "|\n");
-        cardStringBuilder.append("|" + center("Health: " + getAttributeValue(Attributes.HEALTH), CARD_WIDTH-2) + "|\n");
-        cardStringBuilder.append("|" + center("Strenght: " + getAttributeValue(Attributes.STRENGTH), CARD_WIDTH-2) + "|\n");
-        cardStringBuilder.append("|" + center("Intelligence: " + getAttributeValue(Attributes.INTELLIGENCE), CARD_WIDTH-2) + "|\n");
-        cardStringBuilder.append("|" + center("Dexterity: " + getAttributeValue(Attributes.DEXTERITY), CARD_WIDTH-2) + "|\n");
-        cardStringBuilder.append("\\" + generateLine("_", CARD_WIDTH-2) + "/\n");
+        cardStringBuilder.append(" " + UserInterface.SINGLETON.generateLine("_", CARD_WIDTH-2) + " \n");
+        cardStringBuilder.append("/" + UserInterface.SINGLETON.generateLine(" ", CARD_WIDTH-2) + "\\\n");
+        cardStringBuilder.append("|" + UserInterface.SINGLETON.center(name, CARD_WIDTH-2) + "|\n");
+        cardStringBuilder.append("|" + UserInterface.SINGLETON.center(" ", CARD_WIDTH-2) + "|\n");
+        cardStringBuilder.append("|" + UserInterface.SINGLETON.center("Health: " + getAttributeValue(Attributes.HEALTH), CARD_WIDTH-2) + "|\n");
+        cardStringBuilder.append("|" + UserInterface.SINGLETON.center("Strenght: " + getAttributeValue(Attributes.STRENGTH), CARD_WIDTH-2) + "|\n");
+        cardStringBuilder.append("|" + UserInterface.SINGLETON.center("Intelligence: " + getAttributeValue(Attributes.INTELLIGENCE), CARD_WIDTH-2) + "|\n");
+        cardStringBuilder.append("|" + UserInterface.SINGLETON.center("Dexterity: " + getAttributeValue(Attributes.DEXTERITY), CARD_WIDTH-2) + "|\n");
+        cardStringBuilder.append("\\" + UserInterface.SINGLETON.generateLine("_", CARD_WIDTH-2) + "/\n");
 
         return cardStringBuilder.toString();
     }

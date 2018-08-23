@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class RaceConstraints{
     private final int minHealth;
     private final int maxHealth;
@@ -9,7 +7,7 @@ public class RaceConstraints{
     private final int maxIntelligence;
     private final int minDexterity;
     private final int maxDexterity;
-    private Random generator;
+    private Utils utils;
 
     private RaceConstraints(RaceConstraintsBuilder builder){
         this.minHealth = builder.minHealth;
@@ -20,29 +18,23 @@ public class RaceConstraints{
         this.maxIntelligence = builder.maxIntelligence;
         this.minDexterity = builder.minDexterity;
         this.maxDexterity = builder.maxDexterity;
-
-        generator = new Random();
+        utils = new Utils();
     }
 
     public int getRandomHealth(){
-        return getRandomNumber(minHealth, maxHealth);
+        return utils.getRandomNumber(minHealth, maxHealth);
     }
 
     public int getRandomStrenght(){
-        return getRandomNumber(minStrenght, maxStrenght);
+        return utils.getRandomNumber(minStrenght, maxStrenght);
     }
 
     public int getRandomIntelligence(){
-        return getRandomNumber(minIntelligence, maxIntelligence);
+        return utils.getRandomNumber(minIntelligence, maxIntelligence);
     }
 
     public int getRandomDexterity(){
-        return getRandomNumber(minDexterity, maxDexterity);
-    }
-
-    private int getRandomNumber(int min, int max){
-        int value = generator.nextInt(max - min + 1) + min;
-        return value;
+        return utils.getRandomNumber(minDexterity, maxDexterity);
     }
 
     public static class RaceConstraintsBuilder{

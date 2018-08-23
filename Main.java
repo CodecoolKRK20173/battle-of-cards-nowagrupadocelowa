@@ -1,9 +1,14 @@
 public class Main {
-    Game game = new Game();
+    Game game;
 
     public static void main(String[] args) {
         Main main = new Main();
         main.startGame();
+    }
+
+    private Main(){
+        game = new Game();
+        new UserInterface();
     }
 
     public void startGame(){
