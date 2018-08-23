@@ -1,8 +1,11 @@
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class UserInterface{
+    Scanner scanner = new Scanner(System.in);
+
     public void print(String message){
         System.out.println(message);
     }
@@ -19,4 +22,10 @@ public class UserInterface{
         }
             return null;
     }
+
+    // public int input(int number){
+    //     number = scanner.nextInt();
+        
+    //     return number;
+    // }
 }

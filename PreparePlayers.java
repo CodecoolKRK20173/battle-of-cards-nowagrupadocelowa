@@ -1,18 +1,33 @@
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class PreparePlayers{
 
     public ArrayList createPlayers(){
-        
         UserInterface userInterface = new UserInterface();
-        String numOfHumansInput = userInterface.input("How many human players are going to play?");
-        String numOfAIInput = userInterface.input("How many AI players are going to play?");
-        int numOfHumans = Integer.parseInt(numOfHumansInput);
-        int numOfAI = Integer.parseInt(numOfAIInput);
+        boolean isNum = false;
+        int numOfHumans=0;
+        int numOfAI=0;
+        Scanner scanner = new Scanner(System.in);
+
+        while(!isNum)
+        {
+            try
+            {
+                numOfHumans = scanner.nextInt();
+                numOfAI = scanner.nextInt();
+                isNum=true;
+            }
+            catch (InputMismatchException exception)
+            {
+                System.out.println("Integers only, please.");
+            }
+        }        
+        
         Deck deck = new Deck();
-        // int allPlayers = numOfHumans + numOfAI;
 
         ArrayList<Player> listOfPlayers = new ArrayList<Player>();
 
