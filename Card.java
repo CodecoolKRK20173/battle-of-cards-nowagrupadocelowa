@@ -9,7 +9,7 @@ public class Card{
     private String[] randomAdjectives = {"Mighty", "Agile", "Famous", "Common", "Amazing", "Strange",
                                          "Tricky", "Mythical", "Charming", "Sadistic", "Epic", "Dark",
                                          "Wild", "Vivid", "Primal", "Female", "Master"};
-    private final int CARD_WIDTH = 20;
+    private final int CARD_WIDTH = 30;
 
     public Card(int health, int strenght, int intelligence, int dexterity, Races race){
         attributes = new HashMap<Attributes, Integer>();
@@ -96,8 +96,7 @@ public class Card{
         cardStringBuilder.append("|" + center("Strenght: " + getAttributeValue(Attributes.STRENGTH), CARD_WIDTH-2) + "|\n");
         cardStringBuilder.append("|" + center("Intelligence: " + getAttributeValue(Attributes.INTELLIGENCE), CARD_WIDTH-2) + "|\n");
         cardStringBuilder.append("|" + center("Dexterity: " + getAttributeValue(Attributes.DEXTERITY), CARD_WIDTH-2) + "|\n");
-        cardStringBuilder.append("\\" + generateLine(" ", CARD_WIDTH-2) + "/\n");
-        cardStringBuilder.append(" " + generateLine("_", CARD_WIDTH-2) + " \n");
+        cardStringBuilder.append("\\" + generateLine("_", CARD_WIDTH-2) + "/\n");
 
         return cardStringBuilder.toString();
     }

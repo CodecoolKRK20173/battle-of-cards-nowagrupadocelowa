@@ -1,7 +1,7 @@
 public enum Attributes{
     HEALTH("Guardian"), 
     INTELLIGENCE("Wizard"), 
-    STRENGTH("Berserk"), 
+    STRENGTH("Berseker"), 
     DEXTERITY("Rouge");
 
     private String characterClassHavingThisAttributeAsStrongest;
