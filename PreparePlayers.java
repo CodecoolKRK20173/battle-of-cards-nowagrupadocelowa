@@ -13,7 +13,7 @@ public class PreparePlayers{
         int numOfAI = 0;
         Scanner scanner;
 
-        while(!isNum || numOfHumans >=0 || numOfAI >=0 || (numOfHumans+numOfAI) > 1)
+        while(!isNum ||(numOfHumans+numOfAI) < 2)
         {
             scanner = new Scanner(System.in);
             try
@@ -23,11 +23,11 @@ public class PreparePlayers{
                 userInterface.print("Please provide how many AI players are going to play");
                 numOfAI = scanner.nextInt();
                 isNum=true;
-                if(numOfHumans+numOfAI == 0 || numOfHumans+numOfAI == 1){
-                    userInterface.print("Well.. we need at least 2 players...");
-                }
-                else{
+                if (numOfHumans+numOfAI < 0){
                     userInterface.print("Can't go with negative numbers of players :/");
+                }
+                if(numOfHumans+numOfAI < 2){
+                    userInterface.print("Well.. we need at least 2 players...");
                 }
             }
             catch (InputMismatchException exception)

@@ -18,10 +18,8 @@ class HumanPlayer extends Player{
         String message;
         Attributes attribute = null;
 
-        UserInterface.SINGLETON.print(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Strength\n" + "(3) Intelligence\n" + "(4) Dexterity");
-        
         while(answer <=0 || answer > 4){
-            System.out.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Intelligence\n" + "(3) Strength\n" + "(4) Dexterity");
+            UserInterface.SINGLETON.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Strength\n" + "(3) Intelligence\n" + "(4) Dexterity");
             try{
                 System.out.print("Enter: ");
                 answer = (int)reader.nextInt();
