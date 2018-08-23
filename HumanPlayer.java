@@ -1,21 +1,36 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.LinkedList;
 
 class HumanPlayer extends Player{
     
+
     public HumanPlayer(String name, LinkedList<Card> hand){
         setName(name);
         setHand(hand);
     }
 
+
     protected Attributes selectCardAttribute(){
         Scanner reader = new Scanner(System.in);
         int answer = 0;
         String message;
+        Attributes attribute = null;
 
         UserInterface.SINGLETON.print(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Strength\n" + "(3) Intelligence\n" + "(4) Dexterity");
-        answer = (int)reader.nextInt();
+        
+        while(answer <=0 || answer > 4){
+            System.out.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Intelligence\n" + "(3) Strength\n" + "(4) Dexterity");
+            try{
+                System.out.print("Enter: ");
+                answer = (int)reader.nextInt();
+            }catch(InputMismatchException e){
+                reader = new Scanner(System.in);
+                System.out.println("Choose number!");
+            }
+            
+        }
 
         switch(answer){
             case 1:
@@ -31,11 +46,7 @@ class HumanPlayer extends Player{
                 UserInterface.SINGLETON.println("You selected dexterity");
                 return Attributes.DEXTERITY;
         }
-        return null;
-
-        /// TO DO
-        // UserInterface.SINGLETON.println();
-        // reader.close();
-        // return null;
+                  
+        return attribute;
     }
 }

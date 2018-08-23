@@ -11,6 +11,7 @@ public class Game {
     private ArrayList<Card> gamePile;
     private boolean isWinner = false;
     private CardComparator cardComparator;
+    private ArrayList<Player> turnWinners;
 
     public Game(){
         PreparePlayers preparePlayers = new PreparePlayers();
@@ -35,21 +36,25 @@ public class Game {
     }
 
     private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) {
-        
-        ArrayList<Player> turnWinners = new ArrayList<Player>();
 
+        System.out.println("\n\n");
+        System.out.println(activePlayer.getName());
         System.out.println(activePlayer.getHand().getFirst().toString());
         Attributes attribute = activePlayer.selectCardAttribute();
         turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
         // draw
         if (turnWinners.size() > 1) {
+            System.out.println("Draw! play again between players with highest attributes");
             cardsToPile(turnWinners);
             playTurn(turnWinners, activePlayer);
         // 1 player winner
         } else {
+            System.out.println(turnWinners.get(0).getName() + " has won this turn");
+            System.out.println(currentTurnPlayers.get(0).getHand().getFirst() + " first player");
+            System.out.println(currentTurnPlayers.get(1).getHand().getFirst() + " second player");
             cardsToPile(currentTurnPlayers);
             giveAwardedCards(turnWinners.get(0));
-            activePlayer = turnWinners.get(0);
+            this.activePlayer = turnWinners.get(0);
         }
     }
 

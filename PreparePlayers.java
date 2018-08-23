@@ -1,18 +1,43 @@
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class PreparePlayers{
 
     public ArrayList createPlayers(){
-        
         UserInterface userInterface = new UserInterface();
-        String numOfHumansInput = userInterface.input("How many human players are going to play?");
-        String numOfAIInput = userInterface.input("How many AI players are going to play?");
-        int numOfHumans = Integer.parseInt(numOfHumansInput);
-        int numOfAI = Integer.parseInt(numOfAIInput);
+        boolean isNum = false;
+        int numOfHumans = 2;
+        int numOfAI = 0;
+        Scanner scanner;
+
+        while(!isNum || numOfHumans >=0 || numOfAI >=0 || (numOfHumans+numOfAI) > 1)
+        {
+            scanner = new Scanner(System.in);
+            try
+            {
+                userInterface.print("Please provide how many human players are going to play");
+                numOfHumans = scanner.nextInt();
+                userInterface.print("Please provide how many AI players are going to play");
+                numOfAI = scanner.nextInt();
+                isNum=true;
+                if(numOfHumans+numOfAI == 0 || numOfHumans+numOfAI == 1){
+                    userInterface.print("Well.. we need at least 2 players...");
+                }
+                else{
+                    userInterface.print("Can't go with negative numbers of players :/");
+                }
+            }
+            catch (InputMismatchException exception)
+            {
+                System.out.println("Numbers only, please.");
+
+            }
+        }        
+        
         Deck deck = new Deck();
-        // int allPlayers = numOfHumans + numOfAI;
 
         ArrayList<Player> listOfPlayers = new ArrayList<Player>();
 
