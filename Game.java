@@ -12,6 +12,7 @@ public class Game {
     private boolean isWinner = false;
     private CardComparator cardComparator;
     private ArrayList<Player> turnWinners;
+    private UserInterface userInterface;
 
     public Game(){
         PreparePlayers preparePlayers = new PreparePlayers();
@@ -20,6 +21,8 @@ public class Game {
         currentTurnPlayers.addAll(players);
         this.activePlayer = this.players.get(0);
         this.gamePile = new ArrayList<Card>();
+        this.userInterface = new UserInterface();
+        
     }
 
     public void playGame() {
@@ -37,9 +40,8 @@ public class Game {
 
     private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) {
 
-        System.out.println("\n\n");
-        System.out.println(activePlayer.getName());
-        System.out.println(activePlayer.getHand().getFirst().toString());
+        userInterface.SINGLETON.print(activePlayer.getName());
+        userInterface.SINGLETON.print(activePlayer.getHand().getFirst());
         Attributes attribute = activePlayer.selectCardAttribute();
         turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
         // draw
@@ -49,9 +51,7 @@ public class Game {
             playTurn(turnWinners, activePlayer);
         // 1 player winner
         } else {
-            System.out.println(turnWinners.get(0).getName() + " has won this turn");
-            System.out.println(currentTurnPlayers.get(0).getHand().getFirst() + " first player");
-            System.out.println(currentTurnPlayers.get(1).getHand().getFirst() + " second player");
+            userInterface.SINGLETON.print(" has won this turn");
             cardsToPile(currentTurnPlayers);
             giveAwardedCards(turnWinners.get(0));
             this.activePlayer = turnWinners.get(0);
@@ -76,6 +76,8 @@ public class Game {
     private void winnerChecker() {
         for(int i = 0; i < players.size(); i++) {
             Player tempPlayer = players.get(i);
+            userInterface.SINGLETON.print(tempPlayer.getName());
+            userInterface.SINGLETON.print(tempPlayer.getHand().size());
             if(tempPlayer.getHand().size() == 0) {
                 isWinner = true;
                 Collections.sort(players);

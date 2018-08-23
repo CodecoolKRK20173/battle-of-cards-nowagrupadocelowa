@@ -3,8 +3,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class UserInterface{
+    
     public void print(String message){
         System.out.println(message);
+    }
+
+    public void print(int message) {
+        System.out.println();
     }
 
     public String input(String question){
