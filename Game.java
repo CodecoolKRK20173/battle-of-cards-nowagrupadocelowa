@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Game {
 
-
     private ArrayList<PLayer> players;
     private Player activePlayer;
     private ArrayList<Players> currentTurnPlayers;
@@ -20,9 +19,8 @@ public class Game {
     }
 
     private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) {
-
+        
         ArrayList<Player> turnWinners = new ArrayList<Player>();
-
 
         Attributes attribute = activePlayer.selectCardAttribute();
         turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
