@@ -13,7 +13,7 @@ class HumanPlayer extends Player{
         Scanner reader = new Scanner(System.in);
         int answer = 0;
 
-        System.out.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Intelligence\n" + "(3) Strength\n" + "(4) Dexterity");
+        System.out.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Strength\n" + "(3) Intelligence\n" + "(4) Dexterity");
         answer = (int)reader.nextInt();
 
         switch(answer){
@@ -21,11 +21,11 @@ class HumanPlayer extends Player{
                 System.out.println("You selected health!");
                 return Attributes.HEALTH;
             case 2:
-                System.out.println("You selected intelligence");
-                return Attributes.INTELLIGENCE;
-            case 3:
                 System.out.println("You selected strength");
                 return Attributes.STRENGTH;
+            case 3:
+                System.out.println("You selected intelligence");
+                return Attributes.INTELLIGENCE;
             case 4:
                 System.out.println("You selected dexterity");
                 return Attributes.DEXTERITY;
