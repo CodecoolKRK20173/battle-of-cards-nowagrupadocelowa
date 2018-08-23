@@ -9,21 +9,31 @@ public class PreparePlayers{
     public ArrayList createPlayers(){
         UserInterface userInterface = new UserInterface();
         boolean isNum = false;
-        int numOfHumans=0;
-        int numOfAI=0;
-        Scanner scanner = new Scanner(System.in);
+        int numOfHumans = 2;
+        int numOfAI = 0;
+        Scanner scanner;
 
-        while(!isNum)
+        while(!isNum || numOfHumans >=0 || numOfAI >=0 || (numOfHumans+numOfAI) > 1)
         {
+            scanner = new Scanner(System.in);
             try
             {
+                userInterface.print("Please provide how many human players are going to play");
                 numOfHumans = scanner.nextInt();
+                userInterface.print("Please provide how many AI players are going to play");
                 numOfAI = scanner.nextInt();
                 isNum=true;
+                if(numOfHumans+numOfAI == 0 || numOfHumans+numOfAI == 1){
+                    userInterface.print("Well.. we need at least 2 players...");
+                }
+                else{
+                    userInterface.print("Can't go with negative numbers of players :/");
+                }
             }
             catch (InputMismatchException exception)
             {
-                System.out.println("Integers only, please.");
+                System.out.println("Numbers only, please.");
+
             }
         }        
         
