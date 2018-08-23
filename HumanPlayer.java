@@ -21,6 +21,7 @@ class HumanPlayer extends Player{
             reader = new Scanner(System.in);
             System.out.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Intelligence\n" + "(3) Strength\n" + "(4) Dexterity");
             try{
+                System.out.print("Enter: ");
                 answer = (int)reader.nextInt();
             }catch(InputMismatchException e){
                 System.out.println("Choose number!");
