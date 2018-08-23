@@ -7,9 +7,10 @@ public class Main {
     }
 
     public void startGame(){
-        boolean end_of_game = false;
-        while(end_of_game != true){
-            game.playGame();
-        }
+        // boolean end_of_game = false;
+        // while(end_of_game != true){
+        //     game.playGame();
+        // }
+        game.playGame();
     }
 }

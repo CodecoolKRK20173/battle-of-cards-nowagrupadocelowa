@@ -59,11 +59,11 @@ public class RaceConstraints{
             minHealth = 0;
             maxHealth = 100;
             minStrenght = 0;
-            maxStrenght = 20;
+            maxStrenght = 100;
             minIntelligence = 0;
-            maxIntelligence = 20;
+            maxIntelligence = 100;
             minDexterity = 0;
-            maxDexterity = 20;
+            maxDexterity = 100;
         }
 
         public RaceConstraintsBuilder minHealth(int minHealth){

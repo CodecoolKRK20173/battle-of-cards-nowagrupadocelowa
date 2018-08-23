@@ -1,6 +1,9 @@
+import java.util.List;
+import java.util.LinkedList;
+
 class AIPlayer extends Player{
     
-    public HumanPlayer(String name, LinkedList<Card> hand){
+    public AIPlayer(String name, LinkedList<Card> hand){
         setName(name);
         setHand(hand);
     }

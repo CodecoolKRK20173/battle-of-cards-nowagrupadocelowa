@@ -1,31 +1,48 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Collections;
 
 public class Game {
 
-    private ArrayList<PLayer> players;
+    private ArrayList<Player> players;
     private Player activePlayer;
-    private ArrayList<Players> currentTurnPlayers;
+    private ArrayList<Player> currentTurnPlayers;
     private ArrayList<Card> gamePile;
+    private boolean isWinner = false;
+    private CardComparator cardComparator;
 
     public Game(){
-        CardBuilder cardBuilder = new CardBuilder();
-        this.players = cardBuilder.createPlayers();
-        this.currentTurnPlayers = new ArrayList<PLayer>();
+        PreparePlayers preparePlayers = new PreparePlayers();
+        this.players = preparePlayers.createPlayers();
+        this.currentTurnPlayers = new ArrayList<Player>();
         currentTurnPlayers.addAll(players);
-        this.activePlayer = this.players[0];
+        this.activePlayer = this.players.get(0);
         this.gamePile = new ArrayList<Card>();
+    }
+
+    public void playGame() {
+        cardComparator = new CardComparator();
+
+        while(!isWinner) {
+            if(currentTurnPlayers.size() < players.size()) {
+                currentTurnPlayers.clear();
+                currentTurnPlayers.addAll(players);
+            }
+            playTurn(currentTurnPlayers, activePlayer);
+            winnerChecker();
+        }
     }
 
     private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) {
         
         ArrayList<Player> turnWinners = new ArrayList<Player>();
 
+        System.out.println(activePlayer.getHand().getFirst().toString());
         Attributes attribute = activePlayer.selectCardAttribute();
         turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
         // draw
-        if (turnWinners.length() > 1) {
+        if (turnWinners.size() > 1) {
             cardsToPile(turnWinners);
             playTurn(turnWinners, activePlayer);
         // 1 player winner
@@ -37,38 +54,26 @@ public class Game {
     }
 
     private void cardsToPile(ArrayList<Player> currentTurnPlayers) {
-        for(int i = 0; i < currentTurnPlayers.length(); i++) {
+        for(int i = 0; i < currentTurnPlayers.size(); i++) {
             gamePile.add(currentTurnPlayers.get(i).getHand().pollFirst());
         }
     }
 
     private void giveAwardedCards(Player player) {
-        Iterator gamePileIterator = gamePile.gamePileIterator();
+        Iterator<Card> gamePileIterator = gamePile.iterator();
         while(gamePileIterator.hasNext()) {
             player.getHand().add(gamePileIterator.next());
         }
         gamePile.clear();
     }
 
-    public playGame() {
-        CardComparator cardComparator = new CardComparator();
-        boolean noWinner = true;
-
-        while(!noWinner) {
-            if(currentTurnPlayers.length() < players.length()) {
-                currentTurnPlayers.clear();
-                currentTurnPlayers.addAll(players);
-            }
-            playTurn(currentTurnPlayers, activePlayer);
-        }
-    }
 
     private void winnerChecker() {
-        for(int i = 0; i < players.length(); i++) {
+        for(int i = 0; i < players.size(); i++) {
             Player tempPlayer = players.get(i);
-            if(tempPlayer.getHand().length() == 0) {
-                noWinner = false;
-                Collections.sort(players, new HowManyCardsComparator());
+            if(tempPlayer.getHand().size() == 0) {
+                isWinner = true;
+                Collections.sort(players);
             }
         }
     }

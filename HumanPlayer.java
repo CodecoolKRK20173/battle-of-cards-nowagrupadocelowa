@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.List;
+import java.util.LinkedList;
 
 class HumanPlayer extends Player{
     
@@ -9,10 +11,10 @@ class HumanPlayer extends Player{
 
     protected Attributes selectCardAttribute(){
         Scanner reader = new Scanner(System.in);
-        int answer = null;
+        int answer = 0;
 
         System.out.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Intelligence\n" + "(3) Strength\n" + "(4) Dexterity");
-        answer = reader.nextInt();
+        answer = (int)reader.nextInt();
 
         switch(answer){
             case 1:
@@ -28,5 +30,7 @@ class HumanPlayer extends Player{
                 System.out.println("You selected dexterity");
                 return Attributes.DEXTERITY;
         }
+        reader.close();
+        return null;
     }
 }

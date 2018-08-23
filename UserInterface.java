@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class UserInterface{
     public void print(String message){
         System.out.println(message);
@@ -11,7 +15,7 @@ public class UserInterface{
             String answer = keyboardInput.readLine();
             return answer;
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
             return null;
     }
