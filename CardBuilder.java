@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 class CardBuilder{
     private HashMap<Races, RaceConstraints> constraintsMap;
@@ -9,9 +8,11 @@ class CardBuilder{
     private RaceConstraints humanConstraints;
     private RaceConstraints orcConstraints;
     private RaceConstraints dwarfConstraints;
+    private Utils utils;
 
     CardBuilder(){
         constraintsMap = new HashMap<Races, RaceConstraints>();
+        utils = new Utils();
         initializeRaceConstraints();
         makeConstraintsMap();
     }
@@ -54,10 +55,9 @@ class CardBuilder{
 
 
     public Races randomRace(){
-        Random generator = new Random();
         List<Races> keys = new ArrayList<Races>();
         keys.addAll(constraintsMap.keySet());
-        return keys.get(generator.nextInt(3));
+        return keys.get(utils.getRandomNumber(0, 3));
     }
 
     
