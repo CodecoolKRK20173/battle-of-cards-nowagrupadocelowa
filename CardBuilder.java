@@ -16,27 +16,7 @@ class CardBuilder{
         makeConstraintsMap();
     }
         
-    private void makeConstraintsMap(){
-        constraintsMap.put(Races.HUMAN, humanConstraints); //dopisac statystyki
-        constraintsMap.put(Races.ELF, elfConstraints);
-        constraintsMap.put(Races.DWARF, dwarfConstraints);
-        constraintsMap.put(Races.ORC, orcConstraints);
-    }
 
-    public Races randomRace(){
-        Random generator = new Random();
-        List<Races> keys = new ArrayList<Races>();
-        keys.addAll(constraintsMap.keySet());
-        return keys.get(generator.nextInt(3));
-    }
-
-    public Card makeCard(){
-        Races race = randomRace();
-        RaceConstraints tempConstraint = constraintsMap.get(race);
-        return new Card(tempConstraint.getRandomHealth(), tempConstraint.getRandomStrenght(), tempConstraint.getRandomIntelligence(), tempConstraint.getRandomDexterity(), race);
-    }
-    
-    
     public void initializeRaceConstraints(){
         elfConstraints = new RaceConstraints.RaceConstraintsBuilder()
                         .minHealth(40)
@@ -62,5 +42,28 @@ class CardBuilder{
                         .minDexterity(40)
                         .minStrenght(60)
                         .build();
+    }
+
+
+    private void makeConstraintsMap(){
+        constraintsMap.put(Races.HUMAN, humanConstraints); //dopisac statystyki
+        constraintsMap.put(Races.ELF, elfConstraints);
+        constraintsMap.put(Races.DWARF, dwarfConstraints);
+        constraintsMap.put(Races.ORC, orcConstraints);
+    }
+
+
+    public Races randomRace(){
+        Random generator = new Random();
+        List<Races> keys = new ArrayList<Races>();
+        keys.addAll(constraintsMap.keySet());
+        return keys.get(generator.nextInt(3));
+    }
+
+    
+    public Card makeCard(){
+        Races race = randomRace();
+        RaceConstraints tempConstraint = constraintsMap.get(race);
+        return new Card(tempConstraint.getRandomHealth(), tempConstraint.getRandomStrenght(), tempConstraint.getRandomIntelligence(), tempConstraint.getRandomDexterity(), race);
     }
 }
