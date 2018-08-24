@@ -13,16 +13,17 @@ public class Game {
     private CardComparator cardComparator;
     private ArrayList<Player> turnWinners;
 
-    public Game(){
+    public Game() throws InterruptedException {
         PreparePlayers preparePlayers = new PreparePlayers();
         this.players = preparePlayers.createPlayers();
         this.currentTurnPlayers = new ArrayList<Player>();
         currentTurnPlayers.addAll(players);
         this.activePlayer = this.players.get(0);
         this.gamePile = new ArrayList<Card>();
+        
     }
 
-    public void playGame() {
+    public void playGame() throws InterruptedException {
         cardComparator = new CardComparator();
 
         while(!isWinner) {
@@ -35,11 +36,11 @@ public class Game {
         }
     }
 
-    private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) {
+    private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) throws InterruptedException {
 
-        System.out.println("\n\n");
-        System.out.println(activePlayer.getName());
-        System.out.println(activePlayer.getHand().getFirst().toString());
+        Thread.sleep(3000);
+        UserInterface.SINGLETON.clearScreen();
+        UserInterface.SINGLETON.println(activePlayer.getHand().getFirst().toString());
         Attributes attribute = activePlayer.selectCardAttribute();
         turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
         // draw
@@ -49,9 +50,7 @@ public class Game {
             playTurn(turnWinners, activePlayer);
         // 1 player winner
         } else {
-            System.out.println(turnWinners.get(0).getName() + " has won this turn");
-            System.out.println(currentTurnPlayers.get(0).getHand().getFirst() + " first player");
-            System.out.println(currentTurnPlayers.get(1).getHand().getFirst() + " second player");
+            UserInterface.SINGLETON.println(turnWinners.get(0).getName() + " has won this turn \n");
             cardsToPile(currentTurnPlayers);
             giveAwardedCards(turnWinners.get(0));
             this.activePlayer = turnWinners.get(0);
@@ -73,13 +72,18 @@ public class Game {
     }
 
 
-    private void winnerChecker() {
+    private void winnerChecker() throws InterruptedException {
         for(int i = 0; i < players.size(); i++) {
             Player tempPlayer = players.get(i);
+            UserInterface.SINGLETON.print(tempPlayer.getName() + " " + tempPlayer.getHand().size() + " Cards on hand\n");
             if(tempPlayer.getHand().size() == 0) {
                 isWinner = true;
-                Collections.sort(players);
+                Collections.sort(players, Collections.reverseOrder());
             }
+        }
+        if(isWinner) {
+            UserInterface.SINGLETON.print("Congratullations " + players.get(0).getName() + " You have won!\n");
+            Thread.sleep(3000);
         }
     }
 }

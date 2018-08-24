@@ -14,6 +14,10 @@ public class UserInterface{
     public void print(String message){
         System.out.print(message);
     }
+
+    public void print(int message) {
+        println(String.valueOf(message));
+    }
     
     public void println(String message){
         System.out.println(message);
@@ -58,5 +62,19 @@ public class UserInterface{
         }
 
         return lineBuilder.toString();
+    }
+
+    public void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    } 
+
+    public void asciiHello() {
+        System.out.println("oooooooooo              o8     o8   o888                               o888o        oooooooo8                                oooo             ");
+        System.out.println(" 888    888   ooooooo o888oo o888oo  888  ooooooooo8        ooooooo  o888oo       o888     88   ooooooo   oo oooooo     ooooo888   oooooooo8  ");
+        System.out.println(" 888oooo88    ooooo888 888    888    888 888oooooo8       888     888 888         888           ooooo888   888    888 888    888  888ooooooo  ");
+        System.out.println(" 888    888 888    888 888    888    888 888              888     888 888         888o     oo 888    888   888        888    888          888 ");
+        System.out.println("o888ooo888   88ooo88 8o 888o   888o o888o  88oooo888        88ooo88  o888o         888oooo88   88ooo88 8o o888o         88ooo888o 88oooooo88  ");
+
     }
 }

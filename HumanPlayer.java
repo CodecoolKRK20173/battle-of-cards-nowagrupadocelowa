@@ -32,16 +32,16 @@ class HumanPlayer extends Player{
 
         switch(answer){
             case 1:
-                UserInterface.SINGLETON.println("You selected health");
+                UserInterface.SINGLETON.println("You selected health\n");
                 return Attributes.HEALTH;
             case 2:
-                UserInterface.SINGLETON.println("You selected strength");
+                UserInterface.SINGLETON.println("You selected strength\n");
                 return Attributes.STRENGTH;
             case 3:
-                UserInterface.SINGLETON.println("You selected intelligence");
+                UserInterface.SINGLETON.println("You selected intelligence\n");
                 return Attributes.INTELLIGENCE;
             case 4:
-                UserInterface.SINGLETON.println("You selected dexterity");
+                UserInterface.SINGLETON.println("You selected dexterity\n");
                 return Attributes.DEXTERITY;
         }
                   

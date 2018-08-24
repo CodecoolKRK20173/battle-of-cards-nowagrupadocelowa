@@ -18,9 +18,9 @@ public class PreparePlayers{
             scanner = new Scanner(System.in);
             try
             {
-                userInterface.print("Please provide how many human players are going to play");
+                userInterface.print("Please provide how many human players are going to play ");
                 numOfHumans = scanner.nextInt();
-                userInterface.print("Please provide how many AI players are going to play");
+                userInterface.print("Please provide how many AI players are going to play ");
                 numOfAI = scanner.nextInt();
                 isNum=true;
                 if (numOfHumans+numOfAI < 0){
@@ -42,7 +42,7 @@ public class PreparePlayers{
         ArrayList<Player> listOfPlayers = new ArrayList<Player>();
 
         for (int i=0; i<numOfHumans; i++){
-                String name = userInterface.input("What's your nickname?");
+                String name = userInterface.input("What's your nickname? ");
                 listOfPlayers.add(new HumanPlayer(name, deck.dealCardsForPlayers()));
         }
         for (int i=0; i<numOfAI; i++){
