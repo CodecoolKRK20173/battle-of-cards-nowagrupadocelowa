@@ -38,8 +38,8 @@ public class Game {
 
     private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) throws InterruptedException {
 
-        // Thread.sleep(3000);
-        // UserInterface.SINGLETON.clearScreen();
+        Thread.sleep(3000);
+        UserInterface.SINGLETON.clearScreen();
         UserInterface.SINGLETON.println(activePlayer.getHand().getFirst().toString());
         Attributes attribute = activePlayer.selectCardAttribute();
         turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
