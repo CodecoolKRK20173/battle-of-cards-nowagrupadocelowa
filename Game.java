@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.Collections;
 
 public class Game {
@@ -37,13 +38,13 @@ public class Game {
     }
 
     private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) throws InterruptedException {
-
-        // Thread.sleep(3000);
-        // UserInterface.SINGLETON.clearScreen();
+        UserInterface.SINGLETON.clearScreen();
+        UserInterface.SINGLETON.printlnCentered(activePlayer.getName(), 25);
         UserInterface.SINGLETON.println(activePlayer.getHand().getFirst().toString());
         Attributes attribute = activePlayer.selectCardAttribute();
         turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
         // draw
+        TimeUnit.SECONDS.sleep(1);
         if (turnWinners.size() > 1) {
             System.out.println("Draw! play again between players with highest attributes");
             cardsToPile(turnWinners);
@@ -55,6 +56,7 @@ public class Game {
             giveAwardedCards(turnWinners.get(0));
             this.activePlayer = turnWinners.get(0);
         }
+        TimeUnit.SECONDS.sleep(2);
     }
 
     private void cardsToPile(ArrayList<Player> currentTurnPlayers) {
@@ -80,6 +82,7 @@ public class Game {
                 isWinner = true;
             }
         }
+        TimeUnit.SECONDS.sleep(2);
         if(isWinner) {
             Collections.sort(players, Collections.reverseOrder());
             UserInterface.SINGLETON.print("Congratullations " + players.get(0).getName() + " You have won!\n");
