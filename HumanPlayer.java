@@ -28,27 +28,23 @@ class HumanPlayer extends Player{
                 UserInterface.SINGLETON.println("Choose number!");
             }
         }
+        System.out.println(answer);
 
         switch(answer){
             case 1:
-                message = "You selected health\n";
                 attribute = Attributes.HEALTH;
             case 2:
-                message = "You selected strength\n";
                 attribute = Attributes.STRENGTH;
             case 3:
-             message = "You selected intelligence\n";
                 attribute = Attributes.INTELLIGENCE;
             case 4:
-                message = "You selected dexterity\n";
                 attribute = Attributes.DEXTERITY;
             default:
                 message = "";
-                attribute = null;
+                attribute = Attributes.DEXTERITY;
         }
 
-        UserInterface.SINGLETON.println(message);
-        reader.close();        
+        UserInterface.SINGLETON.println("You selected " + attribute.name().toLowerCase()); 
         return attribute;
     }
 }

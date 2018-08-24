@@ -22,6 +22,8 @@ class AIPlayer extends Player{
                 highestAttribute = attribute;
             }
         }
+
+        UserInterface.SINGLETON.println(getName() + " selected: " + highestAttribute.name().toLowerCase());
         
         return highestAttribute;
     }
