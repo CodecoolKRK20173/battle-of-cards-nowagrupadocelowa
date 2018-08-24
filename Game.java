@@ -38,8 +38,8 @@ public class Game {
 
     private void playTurn(ArrayList<Player> currentTurnPlayers, Player activePlayer) throws InterruptedException {
 
-        Thread.sleep(3000);
-        UserInterface.SINGLETON.clearScreen();
+        // Thread.sleep(3000);
+        // UserInterface.SINGLETON.clearScreen();
         UserInterface.SINGLETON.println(activePlayer.getHand().getFirst().toString());
         Attributes attribute = activePlayer.selectCardAttribute();
         turnWinners = cardComparator.compareCards(currentTurnPlayers, attribute);
@@ -78,10 +78,10 @@ public class Game {
             UserInterface.SINGLETON.print(tempPlayer.getName() + " " + tempPlayer.getHand().size() + " Cards on hand\n");
             if(tempPlayer.getHand().size() == 0) {
                 isWinner = true;
-                Collections.sort(players, Collections.reverseOrder());
             }
         }
         if(isWinner) {
+            Collections.sort(players, Collections.reverseOrder());
             UserInterface.SINGLETON.print("Congratullations " + players.get(0).getName() + " You have won!\n");
             Thread.sleep(3000);
         }
