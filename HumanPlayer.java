@@ -16,35 +16,39 @@ class HumanPlayer extends Player{
         Scanner reader = new Scanner(System.in);
         int answer = 0;
         String message;
-        Attributes attribute = null;
+        Attributes attribute;
 
         while(answer <=0 || answer > 4){
             UserInterface.SINGLETON.println(getName() + " select attribute to fight with\n" + "(1) Health\n" + "(2) Strength\n" + "(3) Intelligence\n" + "(4) Dexterity");
             try{
-                System.out.print("Enter: ");
+                UserInterface.SINGLETON.print("Enter: ");
                 answer = (int)reader.nextInt();
             }catch(InputMismatchException e){
                 reader = new Scanner(System.in);
-                System.out.println("Choose number!");
+                UserInterface.SINGLETON.println("Choose number!");
             }
-            
         }
 
         switch(answer){
             case 1:
-                UserInterface.SINGLETON.println("You selected health\n");
-                return Attributes.HEALTH;
+                message = "You selected health\n";
+                attribute = Attributes.HEALTH;
             case 2:
-                UserInterface.SINGLETON.println("You selected strength\n");
-                return Attributes.STRENGTH;
+                message = "You selected strength\n";
+                attribute = Attributes.STRENGTH;
             case 3:
-                UserInterface.SINGLETON.println("You selected intelligence\n");
-                return Attributes.INTELLIGENCE;
+             message = "You selected intelligence\n";
+                attribute = Attributes.INTELLIGENCE;
             case 4:
-                UserInterface.SINGLETON.println("You selected dexterity\n");
-                return Attributes.DEXTERITY;
+                message = "You selected dexterity\n";
+                attribute = Attributes.DEXTERITY;
+            default:
+                message = "";
+                attribute = null;
         }
-                  
+
+        UserInterface.SINGLETON.println(message);
+        reader.close();        
         return attribute;
     }
 }
